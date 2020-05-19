@@ -5,7 +5,7 @@ using System.Text;
 namespace TheWeather.Model
 {
 
-    public class Rootobject
+    public class WeatherData
     {
         public Datum[] data { get; set; }
         public int count { get; set; }
