@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:TheWeather.Converters"
+             mc:Ignorable="d"
+             x:Class="TheWeather.View.WeatherPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FloatToDegrees x:Key="toDegrees"></converters:FloatToDegrees>
+            <converters:FloatMSToKmH x:Key="MstoKmH"></converters:FloatMSToKmH>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#2980B9">
+            <SearchBar SearchCommand="{Binding SearchCommand}"
+                       x:Name="Search"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference Search}}"
+                       BackgroundColor="White"
+                       Placeholder="Introduzca coordenadas de la ciudad"
+                       PlaceholderColor="Blue"
+                       Margin="15">
+            </SearchBar>
+
+            <Frame Margin="25"
+                   BackgroundColor="#3498DB"
+                   VerticalOptions="FillAndExpand"
+                   BorderColor="LightBlue"
+                   CornerRadius="4">
+                <Grid>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType="Label">
+                                <Setter Property="FontSize" Value="Large"></Setter>
+                                <Setter Property="TextColor" Value="White"></Setter>
+                                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                            </Style>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".1*"></RowDefinition>
+                        <RowDefinition Height=".1*"></RowDefinition>
+                        <RowDefinition Height=".1*"></RowDefinition>
+                        <RowDefinition Height=".7*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding Data.data[0].city_name}"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           Grid.Row="0"></Label>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Start"
+                                 Grid.Row="1">
+                        <Label Text="El amanecer es a las: "></Label>
+                        <Label Text="{Binding Data.data[0].sunrise}"
+                               FontSize="Large"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Start"
+                                 Grid.Row="2">
+                        <Label Text="El atardecer es a las: "
+                               HorizontalOptions="Center">
+                        </Label>
+                        <Label Text="{Binding Data.data[0].sunset}"
+                               HorizontalOptions="Center"
+                               FontSize="Large">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="3"
+                                 HorizontalOptions="Fill"
+                                 VerticalOptions="Center">
+                        <Label Text="El clima para hoy es: "
+                               FontAttributes="Bold"></Label>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Image Source="{Binding Data.data[0].weather.icon, 
+                                                StringFormat='https://www.weatherbit.io/static/img/icons/{0}.png'}"></Image>
+                            <Label Text="{Binding Data.data[0].weather.description}"></Label>       
+                        </StackLayout>
+                        <Label Text="Temperatura"
+                               FontAttributes="Bold"
+                               FontSize="28"
+                               ></Label>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Label Text="Temperatura real: "></Label>
+                            <Label Text="{Binding Data.data[0].temp, StringFormat='{0}ºC'}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Label Text="Sensación térmica: "></Label>
+                            <Label Text="{Binding Data.data[0].temp, StringFormat='{0}ºC'}"></Label>
+                        </StackLayout>
+                        <Label Text="Viento"
+                               FontAttributes="Bold"
+                               FontSize="28"
+                               ></Label>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Label Text="Velocidad: "></Label>
+                            <Label Text="{Binding Data.data[0].wind_spd, Converter={StaticResource MstoKmH}}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Label Text="Dirección: "></Label>
+                            <Label Text="{Binding Data.data[0].wind_cdir_full}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

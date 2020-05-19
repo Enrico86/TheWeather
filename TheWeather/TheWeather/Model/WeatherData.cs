@@ -25,7 +25,7 @@ namespace TheWeather.Model
         public float solar_rad { get; set; }
         public string state_code { get; set; }
         public string city_name { get; set; }
-        public int wind_spd { get; set; }
+        public float wind_spd { get; set; }
         public DateTime last_ob_time { get; set; }
         public string wind_cdir_full { get; set; }
         public string wind_cdir { get; set; }
