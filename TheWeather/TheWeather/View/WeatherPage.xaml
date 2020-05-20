@@ -19,7 +19,7 @@
                        x:Name="Search"
                        SearchCommandParameter="{Binding Text, Source={x:Reference Search}}"
                        BackgroundColor="White"
-                       Placeholder="Introduzca coordenadas de la ciudad"
+                       Placeholder="Latitud y longitud de la ciudad, separadas por coma"
                        PlaceholderColor="Blue"
                        Margin="15">
             </SearchBar>

@@ -12,17 +12,10 @@ using Xamarin.Forms;
 
 namespace TheWeather.ViewModel
 {
-    class WeatherPageViewModel : INotifyPropertyChanged
+    public class WeatherPageViewModel : INotifyPropertyChanged
     {
+        
         private WeatherData data;
-        #region
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
         public WeatherData Data
         {
             get => data; 
@@ -47,10 +40,13 @@ namespace TheWeather.ViewModel
                 await GetData($"https://api.weatherbit.io/v2.0/current?lat={latitud}&lon={longitud}&lang=it&key=ac9a6a532ebb4b0685dde7ccec3ae9ce");
             });
         }
-
-
-
-
+        #region
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
 
         private async Task GetData(string url)
         {
