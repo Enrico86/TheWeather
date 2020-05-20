@@ -34,7 +34,7 @@ namespace TheWeather.Model
         public float slp { get; set; }
         public float vis { get; set; }
         public float h_angle { get; set; }
-        public string sunset { get { return sunset1 + 2; } set => sunset1 = value; }
+        public string sunset { get { return sunset1; } set => sunset1 = value; }
         public float dni { get; set; }
         public float dewpt { get; set; }
         public float snow { get; set; }
