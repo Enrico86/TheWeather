@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <converters:FloatToDegrees x:Key="toDegrees"></converters:FloatToDegrees>
             <converters:FloatMSToKmH x:Key="MstoKmH"></converters:FloatMSToKmH>
+            <converters:dateTimeToHoursAndMinutes x:Key="TimeToHours"></converters:dateTimeToHoursAndMinutes>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -48,7 +49,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="{Binding Data.data[0].city_name}"
-                           FontSize="28"
+                           FontSize="20"
                            FontAttributes="Bold"
                            Grid.Row="0"></Label>
                     <StackLayout Orientation="Horizontal"
@@ -56,7 +57,7 @@
                                  VerticalOptions="Start"
                                  Grid.Row="1">
                         <Label Text="El amanecer es a las: "></Label>
-                        <Label Text="{Binding Data.data[0].sunrise}"
+                        <Label Text="{Binding Data.data[0].sunrise, Converter={StaticResource TimeToHours}}"
                                FontSize="Large"></Label>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"
@@ -66,7 +67,7 @@
                         <Label Text="El atardecer es a las: "
                                HorizontalOptions="Center">
                         </Label>
-                        <Label Text="{Binding Data.data[0].sunset}"
+                        <Label Text="{Binding Data.data[0].sunset, Converter={StaticResource TimeToHours}}"
                                HorizontalOptions="Center"
                                FontSize="Large">
                         </Label>
@@ -84,7 +85,7 @@
                         </StackLayout>
                         <Label Text="Temperatura"
                                FontAttributes="Bold"
-                               FontSize="28"
+                               FontSize="20"
                                ></Label>
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="Center">
@@ -98,7 +99,7 @@
                         </StackLayout>
                         <Label Text="Viento"
                                FontAttributes="Bold"
-                               FontSize="28"
+                               FontSize="20"
                                ></Label>
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="Center">

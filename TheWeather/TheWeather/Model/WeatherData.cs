@@ -1,5 +1,8 @@
-﻿using System;
+﻿using NodaTime;
+using NodaTime.Extensions;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace TheWeather.Model
@@ -13,7 +16,8 @@ namespace TheWeather.Model
 
     public class Datum
     {
-        private string sunset1;
+        private DateTime sunset1;
+        private DateTime sunrise1;
 
         public float rh { get; set; }
         public string pod { get; set; }
@@ -34,17 +38,33 @@ namespace TheWeather.Model
         public float slp { get; set; }
         public float vis { get; set; }
         public float h_angle { get; set; }
-        public string sunset { get { return sunset1; } set => sunset1 = value; }
+        public DateTime sunset
+        {
+            get
+            {
+                sunset1 = sunset1.AddHours(2);
+                return sunset1;
+            }
+
+            set
+            {
+                sunset1 = value;
+            }
+        }
         public float dni { get; set; }
         public float dewpt { get; set; }
         public float snow { get; set; }
         public float uv { get; set; }
         public float precip { get; set; }
         public float wind_dir { get; set; }
-        public string sunrise { get; set; }
+        public DateTime sunrise { get 
+            {
+                sunrise1 = sunrise1.AddHours(2);
+                return sunrise1; 
+            } 
+            set => sunrise1 = value; }
         public float ghi { get; set; }
         public float dhi { get; set; }
-        public float aqi { get; set; }
         public float lat { get; set; }
         public Weather weather { get; set; }
         public string datetime { get; set; }
