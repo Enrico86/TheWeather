@@ -3,9 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
              mc:Ignorable="d"
              x:Class="TheWeather.App">
     <Application.Resources>
-
+        <ControlTemplate x:Key="GradientPage">
+            <Grid>
+                <magic:GradientView VerticalOptions="FillAndExpand">
+                    <magic:CssGradientSource>
+                        <![CDATA[radial-gradient(circle at 45% 92%, rgba(154, 154, 154,0.08) 0%, rgba(154, 154, 154,0.08) 33.333%,rgba(119, 119, 119,0.08) 33.333%,
+                rgba(119, 119, 119,0.08) 66.666%,rgba(83, 83, 83,0.08) 66.666%, rgba(83, 83, 83,0.08) 99.999%),radial-gradient(circle at 25% 59%, rgba(82, 
+                82, 82,0.08) 0%, rgba(82, 82, 82,0.08) 33.333%,rgba(93, 93, 93,0.08) 33.333%, rgba(93, 93, 93,0.08) 66.666%,rgba(104, 104, 104,0.08) 
+                66.666%, rgba(104, 104, 104,0.08) 99.999%),radial-gradient(circle at 7% 33%, rgba(56, 56, 56,0.08) 0%, rgba(56, 56, 56,0.08) 33.333%,
+                rgba(134, 134, 134,0.08) 33.333%, rgba(134, 134, 134,0.08) 66.666%,rgba(212, 212, 212,0.08) 66.666%, rgba(212, 212, 212,0.08) 99.999%),
+                linear-gradient(90deg, rgb(3, 199, 193),rgb(92, 3, 177))]]>
+                    </magic:CssGradientSource>
+                </magic:GradientView>
+                <ContentPresenter></ContentPresenter>
+            </Grid>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

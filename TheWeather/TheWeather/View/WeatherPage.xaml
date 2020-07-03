@@ -4,8 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:TheWeather.Converters"
+             xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
              mc:Ignorable="d"
-             x:Class="TheWeather.View.WeatherPage">
+             x:Class="TheWeather.View.WeatherPage"
+             ControlTemplate="{StaticResource GradientPage}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:FloatToDegrees x:Key="toDegrees"></converters:FloatToDegrees>
@@ -14,8 +16,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="#2980B9">
+
+        <StackLayout>
             <SearchBar SearchCommand="{Binding SearchCommand}"
                        x:Name="Search"
                        SearchCommandParameter="{Binding Text, Source={x:Reference Search}}"
@@ -24,12 +26,10 @@
                        PlaceholderColor="Blue"
                        Margin="15">
             </SearchBar>
-
-            <Frame Margin="25"
-                   BackgroundColor="#3498DB"
-                   VerticalOptions="FillAndExpand"
-                   BorderColor="LightBlue"
-                   CornerRadius="4">
+            <Grid Margin="25"
+                  VerticalOptions="FillAndExpand">
+                <Grid BackgroundColor="Black"
+                      Opacity="0.2"></Grid>
                 <Grid>
                     <Grid.Resources>
                         <ResourceDictionary>
@@ -113,7 +113,7 @@
                         </StackLayout>
                     </StackLayout>
                 </Grid>
-            </Frame>
+            </Grid>
         </StackLayout>
-    </ContentPage.Content>
+
 </ContentPage>
